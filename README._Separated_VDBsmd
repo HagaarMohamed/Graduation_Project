@@ -1,0 +1,22 @@
+# EgMM-Corpus: Multi-Modal RAG System
+
+This project implements a Multi-modal Retrieval-Augmented Generation (RAG) system designed to link text descriptions with images of Egyptian monuments. The system leverages advanced deep learning architectures for vector representation and efficient retrieval.
+
+## Models and Technologies
+The system utilizes the following stack for feature extraction and data management:
+
+*   **Visual Embeddings:** Uses **DINOv2** (`facebook/dinov2-base`) to generate precise visual representations of monuments.
+*   **Text Embeddings:** Uses the **BGE** model (`BAAI/bge-base-en-v1.5`) via `SentenceTransformer` to map text into semantic vector space.
+*   **Vector Database:** **Qdrant** is employed to store and manage the multi-modal collection.
+
+## Data and Infrastructure
+*   **Dataset:** The system manages a collection of 4,654 multi-modal points related to Egyptian monuments.
+*   **Storage:** Each point within the Qdrant collection includes image vectors, text vectors, and rich metadata (monument name, image source, and descriptive text).
+*   **Environment:** The project is developed and tested within a Google Colab environment, utilizing Kaggle data integration.
+
+## Evaluation
+The system performs scientific evaluation of image-to-image retrieval tasks using **Recall@1** and **Recall@5** metrics to ensure high-performance accuracy across the monument dataset.
+
+## Features
+*   **Persona-Based Storytelling:** Includes a `get_personalized_story` function to generate content tailored to specific personas, such as "man_adult" or "girl_child".
+*   **Preprocessing:** Includes custom functions for cleaning and preparing Arabic text data (e.g., handling hashtags and emojis).
