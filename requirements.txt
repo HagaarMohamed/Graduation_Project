@@ -1,0 +1,11 @@
+torch>=2.0.0
+torchvision>=0.15.0
+ultralytics>=8.0.0
+kagglehub
+pyyaml
+opencv-python
+matplotlib
+numpy
+Pillow
+tqdm
+anthropic>=0.30.0

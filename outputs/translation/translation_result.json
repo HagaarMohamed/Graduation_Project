@@ -1,0 +1,189 @@
+{
+  "english_translation": "The scribe [Y1] of the throne [Q1] does/makes [D4] the female [B1] of water [N35] [N35] the unknown [E34] good [F35] god [R8] upon [D2] Upper Egypt [M23] the unknown [A52] with twisted wick [V28] and placenta [Aa1] and twisted wick [V28] lord [V30] bread loaf [X1] cobra [I10] foot [D58] [D58] with two diagonal strokes [Z4] walking [D54] the unknown [C11] the unknown [Z3] owl [G17] the unknown [P6] sun disk [N5] forearm [D36] single stroke [Z1] horned viper [I9] son [G39] single stroke [Z1] water ripple [N35]",
+  "arabic_translation": "الكاتب [Y1] على العرش [Q1] يفعل / يصنع [D4] الأنثى [B1] من الماء [N35] [N35] المجهول [E34] جيد [F35] إله [R8] على [D2] مصر العليا [M23] المجهول [A52] مع فتيل ملتوي [V28] ومشيمة [Aa1] وفتيل ملتوي [V28] سيد [V30] رغيف الخبز [X1] الكوبرا [I10] قدم [D58] [D58] مع ضربتان مائلتان [Z4] سير [D54] المجهول [C11] المجهول [Z3] بومة [G17] المجهول [P6] قرص الشمس [N5] الذراع [D36] ضربة واحدة [Z1] أفعى القرن [I9] ابن [G39] ضربة واحدة [Z1] рябь الماء [N35]",
+  "transliteration": "<A30> [Y1] [Q1] ir <B1> n n <E34> [F35] nTr Hr [Z1] [M23] [A52] [V28] [Aa1] [V28] [V30] [X1] [I10] b b [Z4] [D54] [C11] <Z3> [G17] [P6] [N5] a [Z1] [I9] [G39] [Z1] n",
+  "transliteration_refined": "<A30> [Y1] [Q1] ir <B1> n n <E34> [F35] nTr Hr [Z1] [M23] [A52] [V28] [Aa1] [V28] [V30] [X1] [I10] b b [Z4] [D54] [C11] <Z3> [G17] [P6] [N5] a [Z1] [I9] [G39] [Z1] n",
+  "word_analysis": [
+    {
+      "codes": [
+        "A30",
+        "Y1"
+      ],
+      "transliteration": "A30 Y1",
+      "english": "scribe of",
+      "arabic": "الكاتب من"
+    },
+    {
+      "codes": [
+        "Q1",
+        "D4",
+        "B1",
+        "N35",
+        "N35"
+      ],
+      "transliteration": "Q1 ir B1 n n",
+      "english": "does/makes the female of water",
+      "arabic": "يفعل / يصنع الأنثى من الماء"
+    },
+    {
+      "codes": [
+        "E34"
+      ],
+      "transliteration": "E34",
+      "english": "unknown",
+      "arabic": "المجهول"
+    },
+    {
+      "codes": [
+        "F35"
+      ],
+      "transliteration": "F35",
+      "english": "good",
+      "arabic": "جيد"
+    },
+    {
+      "codes": [
+        "R8",
+        "D2",
+        "Z1",
+        "M23"
+      ],
+      "transliteration": "nTr Hr [Z1] [M23]",
+      "english": "god upon Upper Egypt",
+      "arabic": "إله على مصر العليا"
+    },
+    {
+      "codes": [
+        "A52"
+      ],
+      "transliteration": "A52",
+      "english": "unknown",
+      "arabic": "المجهول"
+    },
+    {
+      "codes": [
+        "V28",
+        "Aa1",
+        "V28"
+      ],
+      "transliteration": "[V28] [Aa1] [V28]",
+      "english": "with twisted wick and placenta and twisted wick",
+      "arabic": "مع فتيل ملتوي ومشيمة وفتيل ملتوي"
+    },
+    {
+      "codes": [
+        "V30"
+      ],
+      "transliteration": "[V30]",
+      "english": "lord",
+      "arabic": "سيد"
+    },
+    {
+      "codes": [
+        "X1"
+      ],
+      "transliteration": "[X1]",
+      "english": "bread loaf",
+      "arabic": "رغيف الخبز"
+    },
+    {
+      "codes": [
+        "I10"
+      ],
+      "transliteration": "[I10]",
+      "english": "cobra",
+      "arabic": "الكوبرا"
+    },
+    {
+      "codes": [
+        "D58",
+        "D58"
+      ],
+      "transliteration": "b b",
+      "english": "foot foot",
+      "arabic": "قدم قدم"
+    },
+    {
+      "codes": [
+        "Z4",
+        "D54",
+        "C11"
+      ],
+      "transliteration": "[Z4] [D54] [C11]",
+      "english": "with two diagonal strokes walking unknown",
+      "arabic": "مع ضربتان مائلتان سير المجهول"
+    },
+    {
+      "codes": [
+        "Z3",
+        "G17",
+        "P6",
+        "N5",
+        "D36",
+        "Z1",
+        "I9",
+        "G39",
+        "Z1"
+      ],
+      "transliteration": "<Z3> [G17] [P6] [N5] a [Z1] [I9] [G39] [Z1]",
+      "english": "unknown owl unknown sun disk forearm single stroke horned viper son single stroke",
+      "arabic": "المجهول بومة المجهول قرص الشمس الذراع ضربة واحدة أفعى القرن ابن ضربة واحدة"
+    },
+    {
+      "codes": [
+        "N35"
+      ],
+      "transliteration": "n",
+      "english": "water ripple",
+      "arabic": " рябь Мاء"
+    }
+  ],
+  "context": "unknown text type",
+  "confidence": "low",
+  "caveats": [
+    "A30",
+    "E34",
+    "A52",
+    "Z3",
+    "P6",
+    "C11"
+  ],
+  "raw_codes": [
+    "A30",
+    "Y1",
+    "Q1",
+    "D4",
+    "B1",
+    "N35",
+    "N35",
+    "E34",
+    "F35",
+    "R8",
+    "D2",
+    "Z1",
+    "M23",
+    "A52",
+    "V28",
+    "Aa1",
+    "V28",
+    "V30",
+    "X1",
+    "I10",
+    "D58",
+    "D58",
+    "Z4",
+    "D54",
+    "C11",
+    "Z3",
+    "G17",
+    "P6",
+    "N5",
+    "D36",
+    "Z1",
+    "I9",
+    "G39",
+    "Z1",
+    "N35"
+  ],
+  "direction": "ltr"
+}

@@ -1,0 +1,13 @@
+﻿python : Traceback (most recent call last):
+At line:1 char:1
++ python main.py translate --image "C:\Users\Test\Downloads\Heroglephy  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "C:\Users\Test\Downloads\hieroglyph_system\main.py", line 247, in <module>
+    parser = build_parser()
+  File "C:\Users\Test\Downloads\hieroglyph_system\main.py", line 193, in build_parser
+    parser = argparse.ArgumentParser(
+             ^^^^^^^^
+NameError: name 'argparse' is not defined. Did you forget to import 'argparse'?
