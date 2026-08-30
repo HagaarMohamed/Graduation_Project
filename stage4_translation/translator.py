@@ -8,6 +8,9 @@ Output: TranslationResult (English + Arabic + word analysis)
 import os
 import sys
 import json
+import re
+import base64
+import mimetypes
 from dataclasses import dataclass, field
 
 
@@ -204,90 +207,80 @@ def get_groq_client():
     return Groq(api_key=api_key)
 
 
-SYSTEM_PROMPT = """You are a strict hieroglyph translator. 
+SYSTEM_PROMPT = """You are an expert Egyptologist and ancient Egyptian translation assistant.
 
-ABSOLUTE RULES:
-1. Translate EVERY sign group in order — do not skip any
-2. Do NOT summarize — give the FULL translation word by word
-3. Do NOT say "fragmentary" unless more than 50% of signs are unknown
-4. Show the complete translation as a sequence, not a summary
+Examine the actual attached image first. Then use the image and the compact Stage 1–3 evidence to produce the closest natural translation or semantic reconstruction of the inscription and scene. The user wants the meaning directly in complete sentences, not a technical report, OCR output, image-analysis notes, or a list of signs. Never describe the material, color, surface, carving technique, layout, columns, shapes, birds, eyes, or general artistic quality unless that detail is itself part of the translated message.
 
-OUTPUT FORMAT — JSON only:
-{
-  "english_translation": "full sequential translation of every word group in order",
-  "arabic_translation": "الترجمة الكاملة لكل مجموعة رموز بالترتيب",
-  "transliteration_refined": "complete MdC transliteration",
-  "word_analysis": [
-    {
-      "codes": ["G17", "N35"],
-      "transliteration": "mn",
-      "english": "to endure/remain",
-      "arabic": "يدوم/يبقى"
-    }
-  ],
-  "context": "type of text (offering formula/royal title/temple inscription/etc)",
-  "confidence": "high/medium/low",
-  "caveats": "only list genuinely unknown signs"
-}
+Use the visible image as the primary evidence. Use detected signs, classifications, reading direction, and word-group candidates only as supporting evidence. Treat detector codes such as D12, R8, N35, A40, G17, and Z1 as machine labels, not as Egyptian words. Never turn isolated phonetic fragments into invented sentences.
 
-EXAMPLE of correct output:
-english_translation: "The pure house of Ra endures. The good god, lord of all. Peace offering to Osiris. The son of Ra, beloved of Amun."
+When some words or grammatical links are missing, reconstruct the meaning naturally with the smallest suitable connecting words. Preserve the reliable subject, action, people, objects, and relationships. This is a contextual reconstruction, so make the result fluent and meaningful, but do not add a specific name, deity, ritual, prayer, historical period, or event unless it is supported by the image or reliable grouped meanings. If the exact wording cannot be recovered, give the closest supported semantic message in one or two clear sentences; do not replace it with a description of the stone, ink, colors, columns, symbols, craftsmanship, or image quality.
 
-EXAMPLE of WRONG output (never do this):
-english_translation: "The text contains mn, nfr, Htp..." ← THIS IS WRONG, never summarize
-"""
+Never assume Papyrus of Ani, the Book of the Dead, Ani, Osiris, Anubis, Thoth, Maat, the weighing of the heart, the Hall of Judgment, the Fields of Iaru, or any other fixed story unless the actual image or reliable evidence supports it. If a visual identification is uncertain, use cautious wording such as “appears to” or “likely,” but still provide a useful complete translation.
+
+The English and Arabic translations must begin directly with the meaning, action, person, object, or event. Do not begin with or mention “The text”, “The inscription”, “The image”, “Image description”, “Description”, “Visually”, “This scene”, “يُصوّر النص”, “النص”, “النقش”, “الصورة”, “وصف الصورة”, “الوصف”, “بصريًا”, “هذا المشهد”, “المعنى العام هو”, “يُظهر”, or any similar meta-introduction. Do not say that something is being shown, depicted, described, written, carved, arranged, or visible. Start with the actual content, such as “The deceased stands before the great scales...” or “يقف المتوفى أمام الميزان العظيم...”.
+
+The English translation must be a coherent paragraph of approximately 80–180 words for a complex image. The Arabic translation must be a complete equivalent in formal Classical Arabic (العربية الفصحى), with the same information and similar detail. Do not make the Arabic a short summary. The Arabic section must contain Arabic script only, apart from normal Arabic punctuation and numerals when necessary. Never include English letters, English words, Latin transliteration, Gardiner codes, or mixed forms in the Arabic section. Translate all names and terms into Arabic script: Maat → ماعت, Osiris → أوزير, Anubis → أنوبيس, Thoth → تحوت, Ra → رع, and Iaru/Aaru → يارو.
+
+Never output Gardiner codes, detector labels, coordinates, confidence percentages from detection, line numbers, classification names, raw OCR, raw transliteration, isolated phonetic fragments, Markdown lists, Markdown bold markers, or internal reasoning. Never output a <think> block. Do not mention the model, the pipeline, Stage 1, Stage 2, Stage 3, the prompt, tokens, API, image processing, or parsing. Never output generic visual-description phrases such as “the inscription is carved on dark stone,” “white symbols stand out,” “the signs are arranged in columns,” “the image contains birds and eyes,” “the craftsmanship is detailed,” “the scene appears official,” or equivalent wording. Do not describe what the image is made of; translate what it means.
+
+Do not write Context, Caveats, analysis, reasoning, a visual-analysis plan, a draft, a final-check section, or any explanation outside the two translations and the confidence value. The translation fields must contain only direct semantic sentences, not labels or commentary about the source material.
+
+Return ONLY these three sections in exactly this order and with exactly these headings:
+
+Translation in English:
+Write the complete natural English translation or semantic reconstruction here. Start directly with the meaning or action, person, object, or event. Never start with “The text”, “The inscription”, “The image”, “This scene”, or “Description”. If the readable evidence is insufficient for a literal sentence, provide only the closest supported meaning and do not write a physical or artistic description.
+
+Translation in Arabic:
+اكتب الترجمة أو إعادة البناء الدلالية بالعربية الفصحى هنا. ابدأ بالفعل أو الشخص أو الشيء أو الحدث مباشرة، ولا تبدأ بكلمة «النص» أو «النقش» أو «الصورة» أو «الوصف» أو «يُظهر» أو «يُصوّر». يجب أن يحتوي هذا القسم على حروف عربية فقط، من دون أي كلمة إنجليزية أو ترانسلِتريشن أو أكواد أو حروف لاتينية. اكتب «ماعت» بدل Maat، و«أوزير» بدل Osiris، و«أنوبيس» بدل Anubis، و«تحوت» بدل Thoth، و«رع» بدل Ra، و«يارو» بدل Iaru أو Aaru. إذا تعذرت القراءة الحرفية، اكتب أقرب معنى تدعمه العلامات والمشهد فقط، ولا تصف الحجر أو الألوان أو الأعمدة أو شكل الرموز أو جودة الحفر.
+
+Confidence:
+Write exactly one word: high, medium, or low.
+
+Before responding, silently verify that the response contains only these three sections, that both translations are complete sentences, that no raw symbols or technical commentary appear, and that the English and Arabic convey the same meaning."""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def build_prompt(seq) -> str:
-    """Build the user prompt from a StructuredSequence."""
-    lines = []
+    """Build a compact prompt; the attached image is the primary evidence."""
+    lines = [
+        "Analyze the attached image first and explain the specific object or scene in complete sentences.",
+        "The image is the primary source. Use the Stage 3 data only as secondary, noisy evidence.",
+        f"Reading direction={seq.direction.upper()}; detected signs={len(seq.all_codes)}.",
+        "Describe the visible figures, objects, actions, layout, and likely subject of the scene.",
+        "Then provide an evidence-based English and formal Arabic explanation.",
+        "Do not list signs, codes, phonetic fragments, or raw transliteration.",
+        "Do not assume Ani, the Book of the Dead, a specific god, ritual, or funerary formula unless the image supports it.",
+        "If the inscription is unclear, explain the visible scene instead of refusing or repeating the sign sequence.",
+    ]
 
-    # Sign table
-    lines.append("## Detected Hieroglyphic Signs")
-    lines.append(f"Direction: {seq.direction.upper()} | Total signs: {len(seq.all_codes)}\n")
-    lines.append("| # | Code | Phonetic | Type | Meaning |")
-    lines.append("|---|------|----------|------|---------|")
+    # Send only a small number of compact word-group hints. The complete sign
+    # table and transliteration duplicate information already visible in image
+    # processing and can push a Vision request over Groq's TPM limit.
+    reliable_groups = []
+    for word in getattr(seq, "words", [])[:12]:
+        signs = "+".join(getattr(word, "signs", [])[:5])
+        phonetics = "+".join(getattr(word, "phonetic_signs", [])[:5])
+        if signs or phonetics:
+            reliable_groups.append(f"{signs}|{phonetics}")
+    if reliable_groups:
+        lines.append("Secondary Stage 3 hints (do not treat uncertain fragments as translation):")
+        lines.extend(reliable_groups)
+    else:
+        lines.append("No reliable textual word groups are available; rely on the image for the scene explanation.")
 
-    for i, (code, stype) in enumerate(zip(seq.all_codes, seq.all_types)):
-        entry    = lookup(code)
-        phonetic = entry["phonetic"] or "—"
-        meaning  = entry["meaning"][:45]
-        lines.append(f"| {i+1:2d} | {code:8s} | {phonetic:8s} | {stype:15s} | {meaning} |")
-
-    # Transliteration
-    translit = build_transliteration(seq.all_codes, seq.all_types)
-    lines.append(f"\n## Transliteration\n{translit}")
-
-    # Word groups
-    lines.append("\n## Word Groups (from spatial analysis)")
-    for i, w in enumerate(seq.words):
-        ph = "+".join(w.phonetic_signs) or "(no phonetic signs)"
-        dt = ",".join(w.determinatives) or "—"
-        lines.append(f"Word {i+1}: signs={'+'.join(w.signs)} | phonetic={ph} | det={dt}")
-
-    # Visual lines
-    lines.append("""
-## TRANSLATION INSTRUCTIONS
-- Group consecutive phonetic signs into Egyptian words FIRST
-- Common groupings from this text:
-  * m+n = mn (to endure/remain)
-  * n+f+r = nfr (good/beautiful)  
-  * H+t+p = Htp (peace/offering)
-  * w+a+b = wab (pure/clean)
-  * p+r = pr (house)
-  * n+T+r = nTr (god/divine)
-  * r+a = ra (sun/Ra)
-- THEN translate the grouped words
-- Determinatives in [] classify the word before them
-- Write: phonetic_group [determinative] = meaning
-""")  
-
-
-    for i, line in enumerate(seq.lines):
-        lines.append(f"Line {i+1}: {' '.join(line)}")
-      
     return "\n".join(lines)
-
-# أضيفي الجزء ده في آخر build_prompt قبل return
 
 
 # ── Result dataclass ──────────────────────────────────────────────────────────
@@ -296,7 +289,7 @@ def build_prompt(seq) -> str:
 class TranslationResult:
     english_translation   : str
     arabic_translation    : str
-    transliteration       : strلإ
+    transliteration       : str
     transliteration_refined: str
     word_analysis         : list
     context               : str
@@ -306,35 +299,14 @@ class TranslationResult:
     direction             : str
 
     def pretty_print(self):
-        w = 65
-        print("\n" + "═" * w)
-        print("  🏛  HIEROGLYPH TRANSLATION RESULT")
-        print("═" * w)
-        print(f"\n  Direction        : {self.direction.upper()}")
-        print(f"  Signs            : {' '.join(self.raw_codes)}")
-        print(f"\n  Transliteration  : {self.transliteration}")
-        if self.transliteration_refined:
-            print(f"  Refined          : {self.transliteration_refined}")
-        print(f"\n  🇬🇧 English  :\n  {self.english_translation}")
-        print(f"\n  🇪🇬 Arabic   :\n  {self.arabic_translation}")
-
-        if self.word_analysis:
-            print(f"\n  Word-by-Word Analysis:")
-            print(f"  {'Codes':<20} {'Translit':<12} English / Arabic")
-            print("  " + "-" * 55)
-            for w_entry in self.word_analysis:
-                codes    = "+".join(w_entry.get("codes", []))
-                translit = w_entry.get("transliteration", "")
-                eng      = w_entry.get("english", "")
-                arb      = w_entry.get("arabic", "")
-                print(f"  [{codes:<18}] {translit:<12} {eng} / {arb}")
-
-        if self.context:
-            print(f"\n  Context    : {self.context}")
-        print(f"\n  Confidence : {self.confidence}")
-        if self.caveats:
-            print(f"  Caveats    : {self.caveats}")
-        print("═" * w + "\n")
+        """Display only the user-facing translations and confidence."""
+        print("\n" + "=" * 72)
+        print("Translation in English:")
+        print(self.english_translation.strip())
+        print("\nTranslation in Arabic:")
+        print(self.arabic_translation.strip())
+        print(f"\nConfidence: {self.confidence}")
+        print("=" * 72 + "\n")
 
     def to_dict(self) -> dict:
         return {
@@ -355,65 +327,210 @@ class TranslationResult:
 
 class Stage4Pipeline:
 
-    def __init__(self):
-        cfg         = _load_config()
-        tr          = cfg.get("translation", {})
-        self.model  = tr.get("llm_model", "llama-3.3-70b-versatile")
-        self.max_tok= int(tr.get("max_tokens", 2000))
-        self.out_dir= tr.get("output_dir", "outputs/translation")
+    def __init__(self, image_path=None):
+        cfg = _load_config()
+        tr = cfg.get("translation", {})
+        self.model = tr.get("llm_model", "qwen/qwen3.6-27b")
+        self.max_tok = int(tr.get("max_tokens", 1500))
+        self.out_dir = tr.get("output_dir", "outputs/translation")
+        self.image_path = image_path
         os.makedirs(self.out_dir, exist_ok=True)
         self.client = get_groq_client()
 
-    def translate(self, seq) -> TranslationResult:
-        """Full Stage 4: seq → TranslationResult."""
+    @staticmethod
+    def _image_data_url(image_path: str):
+        """Encode a local image in the data-URL format required by Groq Vision."""
+        if not image_path or not os.path.isfile(image_path):
+            return None
+        mime_type = mimetypes.guess_type(image_path)[0] or "image/jpeg"
+        with open(image_path, "rb") as image_file:
+            encoded = base64.b64encode(image_file.read()).decode("ascii")
+        return f"data:{mime_type};base64,{encoded}"
 
-        translit   = build_transliteration(seq.all_codes, seq.all_types)
-        user_prompt= build_prompt(seq)
+    @staticmethod
+    def _clean_arabic_translation(value: str) -> str:
+        """Keep the Arabic field free of English letters and transliteration."""
+        text = (value or "").strip()
+        replacements = {
+            "Maat": "ماعت",
+            "Ma'at": "ماعت",
+            "Osiris": "أوزير",
+            "Anubis": "أنوبيس",
+            "Thoth": "تحوت",
+            "Ra": "رع",
+            "Re": "رع",
+            "Iaru": "يارو",
+            "Aaru": "يارو",
+            "Horus": "حورس",
+            "Isis": "إيزيس",
+            "Seth": "ست",
+            "Amun": "آمون",
+            "Ptah": "بتاح",
+            "Aten": "آتون",
+            "the deceased": "المتوفى",
+            "the heart": "القلب",
+            "the gods": "الآلهة",
+            "the god": "الإله",
+            "heart": "القلب",
+            "truth": "الحق",
+            "life": "الحياة",
+            "death": "الموت",
+        }
+        for source, target in sorted(replacements.items(), key=lambda item: len(item[0]), reverse=True):
+            text = re.sub(rf"(?<![A-Za-z]){re.escape(source)}(?![A-Za-z])", target, text, flags=re.IGNORECASE)
+        # Remove any remaining Latin words/letters, including accidental transliteration.
+        text = re.sub(r"[A-Za-z]+", "", text)
+        text = re.sub(r"[ \t]{2,}", " ", text)
+        text = re.sub(r"\s+([،؛:.)،؟])", r"\1", text)
+        text = re.sub(r"([،؛:(])\s+", r"\1", text)
+        return text.strip(" \t\r\n-–—:؛،")
+
+    @staticmethod
+    def _parse_text_response(raw_text: str) -> dict:
+        """Extract only the English translation, Arabic translation, and confidence."""
+        text = (raw_text or "").strip()
+        # Qwen may return an open <think> block when the request is truncated.
+        # Remove both closed and unclosed reasoning blocks before parsing.
+        text = re.sub(r"<think>.*?(?:</think>|\Z)", "", text, flags=re.IGNORECASE | re.DOTALL).strip()
+
+        english_match = re.search(
+            r"(?:Translation in English|English Translation|English)\s*:\s*(.*?)(?=\n\s*(?:Translation in Arabic|Arabic Translation|Arabic)\s*:|\Z)",
+            text,
+            flags=re.IGNORECASE | re.DOTALL,
+        )
+        arabic_match = re.search(
+            r"(?:Translation in Arabic|Arabic Translation|Arabic|الترجمة بالعربية|الترجمة العربية)\s*:\s*(.*?)(?=\n\s*Confidence\s*:|\Z)",
+            text,
+            flags=re.IGNORECASE | re.DOTALL,
+        )
+        confidence_match = re.search(
+            r"(?:Confidence|الثقة)\s*:\s*(high|medium|low|مرتفع|متوسط|منخفض)",
+            text,
+            flags=re.IGNORECASE,
+        )
+
+        english = english_match.group(1).strip() if english_match else ""
+        arabic = arabic_match.group(1).strip() if arabic_match else ""
+        arabic = Stage4Pipeline._clean_arabic_translation(arabic)
+        confidence = confidence_match.group(1).lower() if confidence_match else "medium"
+        confidence = {"مرتفع": "high", "متوسط": "medium", "منخفض": "low"}.get(confidence, confidence)
+
+        # If the model omitted headings, keep the raw response as Arabic only
+        # rather than exposing technical content or losing the result entirely.
+        if not english and not arabic:
+            arabic = text
+
+        return {
+            "english_translation": english,
+            "arabic_translation": arabic,
+            "context": "",
+            "confidence": confidence,
+            "caveats": "",
+        }
+
+    @staticmethod
+    def _parse_json(raw_text: str) -> dict:
+        """Parse Groq JSON and safely handle an unexpected fallback."""
+        raw_text = (raw_text or "").strip()
+        if raw_text.startswith("```"):
+            lines = raw_text.splitlines()
+            if lines and lines[0].startswith("```"):
+                lines = lines[1:]
+            if lines and lines[-1].strip().startswith("```"):
+                lines = lines[:-1]
+            raw_text = "\n".join(lines).strip()
+
+        try:
+            parsed = json.loads(raw_text)
+            if isinstance(parsed, dict):
+                return parsed
+            raise ValueError("response is JSON but not an object")
+        except (json.JSONDecodeError, ValueError) as exc:
+            print(f"[Stage4] Warning: JSON parse failed ({exc})")
+            print(f"[Stage4] Raw response preview: {raw_text[:300]!r}")
+            return {
+                "english_translation": raw_text,
+                "arabic_translation": "",
+                "transliteration_refined": "",
+                "word_analysis": [],
+                "context": "",
+                "confidence": "low",
+                "caveats": "The model returned invalid JSON.",
+            }
+
+    def translate(self, seq) -> TranslationResult:
+        """Translate the complete sequence in one Groq request."""
+        translit = build_transliteration(seq.all_codes, seq.all_types)
+        user_prompt = build_prompt(seq)
 
         print(f"[Stage4] Sending {len(seq.all_codes)} signs to Groq ({self.model})...")
 
-        response = self.client.chat.completions.create(
-            model    = self.model,
-            messages = [
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user",   "content": user_prompt},
-            ],
-            max_tokens  = self.max_tok,
-            temperature = 0.0,   # low temp for more deterministic Egyptology output
+        # Vision mode: the image is the primary source and Stage 3 data is
+        # supplied only as compact secondary evidence.
+        image_url = self._image_data_url(self.image_path)
+        if not image_url:
+            raise FileNotFoundError(
+                "Stage 4 requires a readable image for Vision translation. "
+                f"Received image_path={self.image_path!r}. "
+                "Check the --image argument and main.py."
+            )
+
+        user_content = [
+            {"type": "text", "text": user_prompt},
+            {"type": "image_url", "image_url": {"url": image_url}},
+        ]
+        print(f"[Stage4] Vision image attached: {self.image_path}")
+
+        # Groq's free/on-demand limit is 8000 TPM in the user's error.
+        # Estimate the compact text request plus a conservative image reserve.
+        estimated_input_chars = len(SYSTEM_PROMPT) + len(user_prompt)
+        estimated_prompt_tokens = max(1, estimated_input_chars // 3)
+        estimated_image_tokens = 1500
+        estimated_total_input = estimated_prompt_tokens + estimated_image_tokens
+        request_budget = max(800, 7200 - estimated_total_input)
+        request_max_tokens = min(self.max_tok, request_budget)
+        print(
+            f"[Stage4] Estimated input={estimated_total_input} tokens; "
+            f"max_completion_tokens={request_max_tokens}"
         )
 
-        raw_text = response.choices[0].message.content.strip()
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": user_content},
+            ],
+            max_completion_tokens=request_max_tokens,
+            temperature=0.0,
+            # Qwen 3.6 supports none; this prevents <think> from consuming
+            # the completion budget before the two translations are returned.
+            reasoning_effort="none",
+        )
 
-        # Parse JSON
-        try:
-            if "```" in raw_text:
-                raw_text = raw_text.split("```")[1]
-                if raw_text.startswith("json"):
-                    raw_text = raw_text[4:]
-            llm = json.loads(raw_text)
-        except json.JSONDecodeError as e:
-            print(f"[Stage4] Warning: JSON parse failed ({e}) — using raw text")
-            llm = {
-                "english_translation"    : raw_text,
-                "arabic_translation"     : "",
-                "transliteration_refined": "",
-                "word_analysis"          : [],
-                "context"                : "",
-                "confidence"             : "low",
-                "caveats"                : "JSON parsing failed; raw LLM output shown.",
-            }
+        choice = response.choices[0]
+        raw_text = (choice.message.content or "").strip()
+        usage = getattr(response, "usage", None)
+        print(
+            f"[Stage4] finish_reason={choice.finish_reason}; "
+            f"prompt_tokens={getattr(usage, 'prompt_tokens', '?')}; "
+            f"completion_tokens={getattr(usage, 'completion_tokens', '?')}"
+        )
+        if choice.finish_reason == "length":
+            print("[Stage4] WARNING: response truncated; reduce prompt or increase max_tokens.")
+
+        llm = self._parse_text_response(raw_text)
 
         result = TranslationResult(
-            english_translation    = llm.get("english_translation", ""),
-            arabic_translation     = llm.get("arabic_translation", ""),
-            transliteration        = translit,
-            transliteration_refined= llm.get("transliteration_refined", translit),
-            word_analysis          = llm.get("word_analysis", []),
-            context                = llm.get("context", ""),
-            confidence             = llm.get("confidence", "low"),
-            caveats                = llm.get("caveats", ""),
-            raw_codes              = seq.all_codes,
-            direction              = seq.direction,
+            english_translation=llm.get("english_translation", ""),
+            arabic_translation=llm.get("arabic_translation", ""),
+            transliteration=translit,
+            transliteration_refined=translit,
+            word_analysis=[],
+            context=llm.get("context", ""),
+            confidence=llm.get("confidence", "low"),
+            caveats=llm.get("caveats", ""),
+            raw_codes=seq.all_codes,
+            direction=seq.direction,
         )
 
         result.pretty_print()

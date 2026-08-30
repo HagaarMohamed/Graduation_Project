@@ -14,7 +14,7 @@ detection:
   batch: 8
   patience: 15
   save_period: 5
-  conf_threshold: 0.15
+  conf_threshold: 0.05
   iou_threshold: 0.40
   max_det: 300
   run_name: "hieroglyph_detector_v11"
@@ -43,6 +43,8 @@ sequence:
   max_seq_len: 256
   output_dir: "outputs/sequence"
 
+
+
 # ---------- Unified Paths ----------
 paths:
   fixed_yaml: "data/data_fixed.yaml"
@@ -50,3 +52,12 @@ paths:
   stage2_weights: "outputs/classification/best.pt"
   stage3_weights: "outputs/sequence/encoder_best.pt"
   class_map: "outputs/classification/class_map.json"
+
+# ---------- Stage 4: Translation ----------
+translation:
+  llm_model: "qwen/qwen3.6-27b"
+  # مساحة كافية لترجمة كاملة بالعربية والإنجليزية من الصورة والنقش.
+  max_tokens: 1500
+  output_dir: "outputs/translation"
+
+

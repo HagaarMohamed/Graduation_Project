@@ -1,0 +1,503 @@
+﻿
+[Pipeline] Stage 1: Symbol Detection
+[Stage1] conf=0.15  iou=0.4  imgsz=1280  max_det=300
+[Stage1] Detected 80 sign(s) in: pngtree-egyptian-hieroglyphics-ancient-pharaohs-and-temples-travel-relief-history-photo-photo-image_65993108.webp
+  S29       conf=0.29  pos=(18,539)
+  X1        conf=0.74  pos=(24,377)
+  O1        conf=0.57  pos=(26,84)
+  D60       conf=0.95  pos=(28,219)
+  O1        conf=0.58  pos=(29,410)
+  G17       conf=0.54  pos=(34,140)
+  N35       conf=0.60  pos=(37,510)
+  G17       conf=0.52  pos=(39,462)
+  N35       conf=0.74  pos=(39,188)
+  D36       conf=0.78  pos=(44,48)
+  N35       conf=0.77  pos=(44,23)
+  D35       conf=0.91  pos=(44,329)
+  N35       conf=0.61  pos=(45,353)
+  A1        conf=0.35  pos=(46,278)
+  R8        conf=0.94  pos=(51,539)
+  X1        conf=0.79  pos=(66,88)
+  Q1        conf=0.96  pos=(67,395)
+  M17       conf=0.81  pos=(72,139)
+  S29       conf=0.88  pos=(76,210)
+  S29       conf=0.88  pos=(76,524)
+  M17       conf=0.74  pos=(77,458)
+  S29       conf=0.89  pos=(108,432)
+  Q3        conf=0.40  pos=(110,370)
+  Z1        conf=0.35  pos=(126,174)
+  D36       conf=0.73  pos=(127,46)
+  G17       conf=0.57  pos=(129,227)
+  X1        conf=0.72  pos=(129,21)
+  Q3        conf=0.42  pos=(130,65)
+  V23       conf=0.79  pos=(134,137)
+  D36       conf=0.79  pos=(134,279)
+  D36       conf=0.33  pos=(135,6)
+  N35       conf=0.67  pos=(135,83)
+  N35       conf=0.69  pos=(136,477)
+  Q3        conf=0.42  pos=(136,368)
+  N35       conf=0.65  pos=(137,389)
+  V23       conf=0.36  pos=(137,514)
+  X1        conf=0.76  pos=(137,103)
+  G43       conf=0.48  pos=(139,328)
+  D21       conf=0.53  pos=(139,122)
+  D21       conf=0.68  pos=(142,497)
+  Z1        conf=0.30  pos=(145,173)
+  D36       conf=0.68  pos=(146,525)
+  D2        conf=0.85  pos=(155,424)
+  N5        conf=0.61  pos=(160,230)
+  V28       conf=0.76  pos=(164,43)
+  Q3        conf=0.39  pos=(164,369)
+  X1        conf=0.31  pos=(168,548)
+  M23       conf=0.72  pos=(204,474)
+  N5        conf=0.82  pos=(208,65)
+  D2        conf=0.68  pos=(212,416)
+  Z1        conf=0.16  pos=(223,325)
+  Z2        conf=0.59  pos=(223,324)
+  D21       conf=0.87  pos=(226,97)
+  D35       conf=0.89  pos=(227,16)
+  O34       conf=0.58  pos=(227,38)
+  N35       conf=0.66  pos=(228,149)
+  Y1        conf=0.88  pos=(228,302)
+  N5        conf=0.58  pos=(229,124)
+  I9        conf=0.89  pos=(229,337)
+  G43       conf=0.55  pos=(229,249)
+  F13       conf=0.80  pos=(230,374)
+  N35       conf=0.71  pos=(231,520)
+  I10       conf=0.35  pos=(236,545)
+  Z1        conf=0.18  pos=(243,324)
+  Q3        conf=0.90  pos=(248,66)
+  M23       conf=0.63  pos=(250,473)
+  Q3        conf=0.91  pos=(253,415)
+  S29       conf=0.87  pos=(291,173)
+  D58       conf=0.51  pos=(302,360)
+  G29       conf=0.38  pos=(317,38)
+  N16       conf=0.95  pos=(319,240)
+  G17       conf=0.47  pos=(319,102)
+  N16       conf=0.93  pos=(320,221)
+  M13       conf=0.63  pos=(320,416)
+  V30       conf=0.42  pos=(321,451)
+  O22       conf=0.24  pos=(321,412)
+  G17       conf=0.49  pos=(322,282)
+  G17       conf=0.51  pos=(322,504)
+  X1        conf=0.81  pos=(339,170)
+  V28       conf=0.71  pos=(348,353)
+
+[Pipeline] Stage 2: Symbol Classification
+[Stage2] Classifier loaded: 767 classes, device=cuda
+
+[Pipeline] Stage 3: Sequence Processing
+[Stage3] Encoder weights loaded: outputs/sequence/encoder_best.pt
+[Stage3] Portrait image detected ΓåÆ assuming vertical columns (TTB)
+[Stage3] Found 3 column(s)
+  Column 1: N35 D36 O1 X1 M17 G17 N35 S29 D60 A1 D35 N35 Q3 X1 Q1 O1 S29 M17 G17 N35 S29 V4 R8
+  Column 2: D36 D35 X1 O34 V28 D36 N36 N5 N35 D21 X1 D21 N33 V23 N35 Z1 Z1 G17 N33 G43 D36 Y1 Z2 Z1 G43 I9 Q3 Q3 F13 N35 D2 D2 M22 N35 D21 V23 N35 D36 I10 X1
+  Column 3: G26 Q3 G17 X1 S29 N16 N16 G17 Z1 V28 D58 O22 Q3 M13 W3 M23 G17
+
+=================================================================
+  Stage 3 ΓÇö Structured Sequence  [TTB]
+=================================================================
+
+  CODE       TYPE            CONF  
+  -----------------------------------
+  N35        phonogram       88.25%
+  D36        phonogram       91.79%
+  O1         phonogram       91.27%
+  X1         phonogram       86.44%
+  M17        ideogram        86.19%
+  G17        phonogram       90.72%
+  N35        phonogram       88.21%
+  S29        phonogram       84.37%
+  D60        determinative   95.42%
+  A1         phonogram       92.66%
+  D35        phonogram       91.55%
+  N35        phonogram       89.80%
+  Q3         phonogram       85.79%
+  X1         phonogram       82.99%
+  Q1         ideogram        90.72%
+  O1         phonogram       93.73%
+  S29        ideogram        88.83%
+  M17        ideogram        88.59%
+  G17        phonogram       88.83%
+  N35        phonogram       88.51%
+  S29        ideogram        86.60%
+  V4         phonogram       48.51%
+  R8         phonogram       51.87%
+  D36        phonogram       82.98%
+  D35        phonogram       91.39%
+  X1         phonogram       85.66%
+  O34        phonogram       88.70%
+  V28        phonogram       90.12%
+  D36        phonogram       35.77%
+  N36        phonogram       58.53%
+  N5         phonogram       68.00%
+  N35        determinative   88.58%
+  D21        determinative   88.55%
+  X1         phonogram       84.85%
+  D21        determinative   21.87%
+  N33        phonogram       51.74%
+  V23        phonogram       56.40%
+  N35        phonogram       89.42%
+  Z1         phonogram       86.60%
+  Z1         determinative   87.22%
+  G17        ideogram        90.65%
+  N33        determinative   89.66%
+  G43        ideogram        87.73%
+  D36        determinative   88.57%
+  Y1         phonogram       84.67%
+  Z2         phonogram       84.97%
+  Z1         phonogram       89.97%
+  G43        phonogram       87.13%
+  I9         phonogram       88.07%
+  Q3         phonogram       85.24%
+  Q3         phonogram       76.51%
+  F13        phonogram       92.94%
+  N35        phonogram       89.02%
+  D2         phonogram       51.17%
+  D2         phonogram       67.60%
+  M22        ideogram        70.93%
+  N35        phonogram       89.06%
+  D21        determinative   85.68%
+  V23        phonogram       86.60%
+  N35        determinative   88.53%
+  D36        phonogram       83.36%
+  I10        phonogram       88.54%
+  X1         phonogram       88.65%
+  G26        phonogram       32.11%
+  Q3         phonogram       84.79%
+  G17        phonogram       89.66%
+  X1         phonogram       85.31%
+  S29        ideogram        83.44%
+  N16        determinative   89.14%
+  N16        determinative   84.35%
+  G17        phonogram       88.66%
+  Z1         determinative   88.40%
+  V28        determinative   90.89%
+  D58        phonogram       78.47%
+  O22        determinative   99.41%
+  Q3         phonogram       72.76%
+  M13        determinative   84.27%
+  W3         determinative   86.46%
+  M23        determinative   88.35%
+  G17        determinative   85.90%
+
+  Words (74):
+  [1] phonetic=N35  det=ΓÇö
+  [2] phonetic=D36  det=ΓÇö
+  [3] phonetic=O1  det=ΓÇö
+  [4] phonetic=X1+M17  det=ΓÇö
+  [5] phonetic=G17  det=ΓÇö
+  [6] phonetic=N35+S29  det=ΓÇö
+  [7] phonetic=(no phonetic signs)  det=D60
+  [8] phonetic=A1  det=ΓÇö
+  [9] phonetic=D35  det=ΓÇö
+  [10] phonetic=N35  det=ΓÇö
+  [11] phonetic=Q3  det=ΓÇö
+  [12] phonetic=X1  det=ΓÇö
+  [13] phonetic=Q1  det=ΓÇö
+  [14] phonetic=O1+S29+M17  det=ΓÇö
+  [15] phonetic=G17  det=ΓÇö
+  [16] phonetic=N35+S29  det=ΓÇö
+  [17] phonetic=V4  det=ΓÇö
+  [18] phonetic=R8  det=ΓÇö
+  [19] phonetic=D36  det=ΓÇö
+  [20] phonetic=D35  det=ΓÇö
+  [21] phonetic=X1  det=ΓÇö
+  [22] phonetic=O34  det=ΓÇö
+  [23] phonetic=V28  det=ΓÇö
+  [24] phonetic=D36  det=ΓÇö
+  [25] phonetic=N36  det=ΓÇö
+  [26] phonetic=N5  det=ΓÇö
+  [27] phonetic=(no phonetic signs)  det=N35
+  [28] phonetic=(no phonetic signs)  det=D21
+  [29] phonetic=X1  det=ΓÇö
+  [30] phonetic=(no phonetic signs)  det=D21
+  [31] phonetic=N33  det=ΓÇö
+  [32] phonetic=V23  det=ΓÇö
+  [33] phonetic=N35  det=ΓÇö
+  [34] phonetic=Z1  det=ΓÇö
+  [35] phonetic=(no phonetic signs)  det=Z1
+  [36] phonetic=G17  det=ΓÇö
+  [37] phonetic=(no phonetic signs)  det=N33
+  [38] phonetic=G43  det=ΓÇö
+  [39] phonetic=(no phonetic signs)  det=D36
+  [40] phonetic=Y1  det=ΓÇö
+  [41] phonetic=Z2  det=ΓÇö
+  [42] phonetic=Z1  det=ΓÇö
+  [43] phonetic=G43  det=ΓÇö
+  [44] phonetic=I9  det=ΓÇö
+  [45] phonetic=Q3  det=ΓÇö
+  [46] phonetic=Q3  det=ΓÇö
+  [47] phonetic=F13  det=ΓÇö
+  [48] phonetic=N35  det=ΓÇö
+  [49] phonetic=D2  det=ΓÇö
+  [50] phonetic=D2  det=ΓÇö
+  [51] phonetic=M22  det=ΓÇö
+  [52] phonetic=N35  det=ΓÇö
+  [53] phonetic=(no phonetic signs)  det=D21
+  [54] phonetic=V23  det=ΓÇö
+  [55] phonetic=(no phonetic signs)  det=N35
+  [56] phonetic=D36  det=ΓÇö
+  [57] phonetic=I10  det=ΓÇö
+  [58] phonetic=X1  det=ΓÇö
+  [59] phonetic=G26  det=ΓÇö
+  [60] phonetic=Q3  det=ΓÇö
+  [61] phonetic=G17  det=ΓÇö
+  [62] phonetic=X1  det=ΓÇö
+  [63] phonetic=S29  det=ΓÇö
+  [64] phonetic=(no phonetic signs)  det=N16
+  [65] phonetic=(no phonetic signs)  det=N16
+  [66] phonetic=G17  det=ΓÇö
+  [67] phonetic=(no phonetic signs)  det=Z1,V28
+  [68] phonetic=D58  det=ΓÇö
+  [69] phonetic=(no phonetic signs)  det=O22
+  [70] phonetic=Q3  det=ΓÇö
+  [71] phonetic=(no phonetic signs)  det=M13
+  [72] phonetic=(no phonetic signs)  det=W3
+  [73] phonetic=(no phonetic signs)  det=M23
+  [74] phonetic=(no phonetic signs)  det=G17
+
+
+[Pipeline] Stage 4: Translation (Groq + Llama 3)
+[Stage4] Sending 80 signs to Groq (llama-3.3-70b-versatile)...
+[Stage4] Warning: JSON parse failed (Unterminated string starting at: line 220 column 18 (char 5890)) ΓÇö using raw text
+
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+  ≡ƒÅ¢  HIEROGLYPH TRANSLATION RESULT
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+
+  Direction        : TTB
+  Signs            : N35 D36 O1 X1 M17 G17 N35 S29 D60 A1 D35 N35 Q3 X1 Q1 O1 S29 M17 G17 N35 S29 V4 R8 D36 D35 X1 O34 V28 D36 N36 N5 N35 D21 X1 D21 N33 V23 N35 Z1 Z1 G17 N33 G43 D36 Y1 Z2 Z1 G43 I9 Q3 Q3 F13 N35 D2 D2 M22 N35 D21 V23 N35 D36 I10 X1 G26 Q3 G17 X1 S29 N16 N16 G17 Z1 V28 D58 O22 Q3 M13 W3 M23 G17
+
+  Transliteration  : n a pr t i m n s [D60] <A1> n n p t st pr s i m n s wA nTr a n t z H a mr ra [N35] [D21] t [D21] <N33> wp n <Z1> [Z1] m [N33] w [D36] mDAt <Z2> <Z1> w f p p db n Hr Hr nn n [D21] wp [N35] a D t Dhwty p m t s [N16] [N16] m [Z1] [V28] b [O22] p [M13] [W3] [M23] [G17]
+
+  ≡ƒç¼≡ƒçº English  :
+  
+{
+  "english_translation": "water ripple a house bread loaf i m n water ripple s pure man not water ripple stool bread loaf Isis house s i m n s wA god a not bread loaf door bolt twisted wick forearm canal sun disk water ripple mouth bread loaf mouth grain of sand cord on stick water ripple single stroke single stroke m grain of sand quail chick forearm papyrus scroll three strokes single stroke quail chick horned viper stool stool horn water ripple face face rush water ripple mouth cord on stick water ripple forearm cobra upright bread loaf Thoth stool m bread loaf s earth earth m single stroke twisted wick foot shrine with naos stool papyrus stem alabaster basin sedge plant m",
+  "arabic_translation": "┘à╪º╪í ┘à╪╖╪▒ ╪¿┘è╪¬ ╪«╪¿╪▓ ╪╣┘è╪┤┘è ┘à ┘å ┘à╪º╪í ┘à╪╖╪▒ ╪│ ┘å┘é┘è ╪▒╪¼┘ä ┘ä╪º ┘à╪º╪í ┘à╪╖╪▒-taburet ╪«╪¿╪▓ ╪╣┘è╪┤┘è ╪╣╪▒╪┤ ╪¿┘è╪¬ ╪│ ╪╣┘è╪┤┘è ┘à ┘å ╪│ ┘ê ╪º ╪º┘ä┘ç ╪º ┘ä╪º ╪«╪¿╪▓ ╪╣┘è╪┤┘è ╪¿╪º╪¿ ┘à┘é┘ü┘ê┘ä ╪┤┘à╪⌐ ┘à╪╣┘â┘ê╪│╪⌐ ╪░╪▒╪º╪╣ ┘é┘å╪º╪⌐ ┘é╪▒╪╡ ╪┤┘à╪│┘è ┘à╪º╪í ┘à╪╖╪▒ ┘ü┘à ╪«╪¿╪▓ ╪╣┘è╪┤┘è ┘ü┘à ╪¡╪¿╪⌐ ╪▒┘à┘ä ╪¡╪¿┘ä ╪╣┘ä┘ë ╪╣┘ê╪» ┘à╪º╪í ┘à╪╖╪▒ ╪«╪╖ ┘à┘ü╪▒╪» ╪«╪╖ ┘à┘ü╪▒╪» ┘à ╪¡╪¿╪⌐ ╪▒┘à┘ä ╪╖╪º╪ª╪▒ ╪╡┘è╪» ┘é┘ê╪º╪ª┘à ╪░╪▒╪º╪╣ ┘ê╪▒┘é ╪º┘ä╪¿╪▒╪»┘è ╪½┘ä╪º╪½╪⌐ ╪«╪╖┘ê╪╖ ╪«╪╖ ┘à┘ü╪▒╪» ╪╖╪º╪ª╪▒ ╪╡┘è╪» ╪ú┘ü╪╣┘ë ┘é╪▒╪╡ ╪┤┘à╪│┘è-taburet-taburet ┘é╪▒┘å ┘à╪º╪í ┘à╪╖╪▒ ┘ê╪¼┘ç ┘ê╪¼┘ç ┘å╪¼┘à ┘à╪º╪í ┘à╪╖╪▒ ┘ü┘à ╪¡╪¿┘ä ╪╣┘ä┘ë ╪╣┘ê╪» ┘à╪º╪í ┘à╪╖╪▒ ╪░╪▒╪º╪╣ ╪½╪╣╪¿╪º┘å ╪«╪¿╪▓ ╪╣┘è╪┤┘è ╪½┘ê╪½-taburet ┘à ╪«╪¿╪▓ ╪╣┘è╪┤┘è ╪│ ╪ú╪▒╪╢ ╪ú╪▒╪╢ ┘à ╪«╪╖ ┘à┘ü╪▒╪» ╪┤┘à╪⌐ ┘à╪╣┘â┘ê╪│╪⌐ ┘é╪»┘à ┘ç┘è┘â┘ä ┘à╪╣ ╪¬╪º╪¿┘ê╪¬-taburet ╪│╪º┘é ┘å┘ç╪▒ ┘ü┘è╪╢╪º┘å ╪│edge ┘å╪¿╪º╪¬ ┘à",
+  "transliteration_refined": "n a pr t i m n s [D60] <A1> n n p t st pr s i m n s wA nTr a n t z H a mr ra [N35] [D21] t [D21] <N33> wp n <Z1> [Z1] m [N33] w [D36] mDAt <Z2> <Z1> w f p p db n Hr Hr nn n [D21] wp [N35] a D t Dhwty p m t s [N16] [N16] m [Z1] [V28] b [O22] p [M13] [W3] [M23] [G17]",
+  "word_analysis": [
+    {
+      "codes": ["N35", "D36", "O1"],
+      "transliteration": "n a pr",
+      "english": "water ripple a house",
+      "arabic": "┘à╪º╪í ┘à╪╖╪▒ ╪º ╪¿┘è╪¬"
+    },
+    {
+      "codes": ["X1", "M17"],
+      "transliteration": "t i",
+      "english": "bread loaf i",
+      "arabic": "╪«╪¿╪▓ ╪╣┘è╪┤┘è ╪╣┘è╪┤┘è"
+    },
+    {
+      "codes": ["G17"],
+      "transliteration": "m",
+      "english": "m",
+      "arabic": "┘à"
+    },
+    {
+      "codes": ["N35", "S29"],
+      "transliteration": "n s",
+      "english": "water ripple s",
+      "arabic": "┘à╪º╪í ┘à╪╖╪▒ ╪│"
+    },
+    {
+      "codes": ["D60"],
+      "transliteration": "",
+      "english": "pure",
+      "arabic": "┘å┘é┘è"
+    },
+    {
+      "codes": ["A1"],
+      "transliteration": "",
+      "english": "man",
+      "arabic": "╪▒╪¼┘ä"
+    },
+    {
+      "codes": ["D35"],
+      "transliteration": "n",
+      "english": "not",
+      "arabic": "┘ä╪º"
+    },
+    {
+      "codes": ["N35"],
+      "transliteration": "n",
+      "english": "water ripple",
+      "arabic": "┘à╪º╪í ┘à╪╖╪▒"
+    },
+    {
+      "codes": ["Q3"],
+      "transliteration": "p",
+      "english": "stool",
+      "arabic": "taburet"
+    },
+    {
+      "codes": ["X1"],
+      "transliteration": "t",
+      "english": "bread loaf",
+      "arabic": "╪«╪¿╪▓ ╪╣┘è╪┤┘è"
+    },
+    {
+      "codes": ["Q1"],
+      "transliteration": "st",
+      "english": "Isis",
+      "arabic": "╪╣╪▒╪┤"
+    },
+    {
+      "codes": ["O1", "S29", "M17"],
+      "transliteration": "pr s i",
+      "english": "house s i",
+      "arabic": "╪¿┘è╪¬ ╪│ ╪╣┘è╪┤┘è"
+    },
+    {
+      "codes": ["G17"],
+      "transliteration": "m",
+      "english": "m",
+      "arabic": "┘à"
+    },
+    {
+      "codes": ["N35", "S29"],
+      "transliteration": "n s",
+      "english": "water ripple s",
+      "arabic": "┘à╪º╪í ┘à╪╖╪▒ ╪│"
+    },
+    {
+      "codes": ["V4"],
+      "transliteration": "wA",
+      "english": "wA",
+      "arabic": "┘ê ╪º"
+    },
+    {
+      "codes": ["R8"],
+      "transliteration": "nTr",
+      "english": "god",
+      "arabic": "╪º┘ä┘ç"
+    },
+    {
+      "codes": ["D36"],
+      "transliteration": "a",
+      "english": "a",
+      "arabic": "╪º"
+    },
+    {
+      "codes": ["D35"],
+      "transliteration": "n",
+      "english": "not",
+      "arabic": "┘ä╪º"
+    },
+    {
+      "codes": ["X1"],
+      "transliteration": "t",
+      "english": "bread loaf",
+      "arabic": "╪«╪¿╪▓ ╪╣┘è╪┤┘è"
+    },
+    {
+      "codes": ["O34"],
+      "transliteration": "z",
+      "english": "door bolt",
+      "arabic": "╪¿╪º╪¿ ┘à┘é┘ü┘ê┘ä"
+    },
+    {
+      "codes": ["V28"],
+      "transliteration": "H",
+      "english": "twisted wick",
+      "arabic": "╪┤┘à╪⌐ ┘à╪╣┘â┘ê╪│╪⌐"
+    },
+    {
+      "codes": ["D36"],
+      "transliteration": "a",
+      "english": "a",
+      "arabic": "╪º"
+    },
+    {
+      "codes": ["N36"],
+      "transliteration": "mr",
+      "english": "canal",
+      "arabic": "┘é┘å╪º╪⌐"
+    },
+    {
+      "codes": ["N5"],
+      "transliteration": "ra",
+      "english": "sun disk",
+      "arabic": "┘é╪▒╪╡ ╪┤┘à╪│┘è"
+    },
+    {
+      "codes": ["N35"],
+      "transliteration": "n",
+      "english": "water ripple",
+      "arabic": "┘à╪º╪í ┘à╪╖╪▒"
+    },
+    {
+      "codes": ["D21"],
+      "transliteration": "",
+      "english": "mouth",
+      "arabic": "┘ü┘à"
+    },
+    {
+      "codes": ["X1"],
+      "transliteration": "t",
+      "english": "bread loaf",
+      "arabic": "╪«╪¿╪▓ ╪╣┘è╪┤┘è"
+    },
+    {
+      "codes": ["D21"],
+      "transliteration": "",
+      "english": "mouth",
+      "arabic": "┘ü┘à"
+    },
+    {
+      "codes": ["N33"],
+      "transliteration": "",
+      "english": "grain of sand",
+      "arabic": "╪¡╪¿╪⌐ ╪▒┘à┘ä"
+    },
+    {
+      "codes": ["V23"],
+      "transliteration": "wp",
+      "english": "cord on stick",
+      "arabic": "╪¡╪¿┘ä ╪╣┘ä┘ë ╪╣┘ê╪»"
+    },
+    {
+      "codes": ["N35"],
+      "transliteration": "n",
+      "english": "water ripple",
+      "arabic": "┘à╪º╪í ┘à╪╖╪▒"
+    },
+    {
+      "codes": ["Z1"],
+      "transliteration": "",
+      "english": "single stroke",
+      "arabic": "╪«╪╖ ┘à┘ü╪▒╪»"
+    },
+    {
+      "codes": ["Z1"],
+      "transliteration": "",
+      "english": "single stroke",
+      "arabic": "╪«╪╖ ┘à┘ü╪▒╪»"
+    },
+    {
+      "codes": ["G17"],
+      "transliteration": "m",
+      "english": "m",
+      "arabic": "┘à"
+    },
+    {
+      "codes": ["N33"],
+      "transliteration": "",
+      "english": "grain of sand",
+      "arabic": "╪¡╪¿╪⌐ ╪▒┘à┘ä"
+    },
+    {
+      "codes": ["G43"],
+      "transliteration": "w",
+      "english": "
+
+  ≡ƒç¬≡ƒç¼ Arabic   :
+  
+
+  Confidence : low
+  Caveats    : JSON parsing failed; raw LLM output shown.
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+
+[Stage4] Result saved: outputs/translation\translation_result.json

@@ -174,12 +174,12 @@ def cmd_translate(args):
     seq_pipe = Stage3Pipeline(image_path=args.image)
     seq      = seq_pipe.process(enriched)
 
-    print("\n[Pipeline] Stage 4: Translation (Groq + Llama 3)")
-    tr_pipe = Stage4Pipeline()
+    print("\n[Pipeline] Stage 4: Translation (Groq Vision)")
+    tr_pipe = Stage4Pipeline(image_path=args.image)
+
     result  = tr_pipe.translate(seq)
 
-    if args.save:
-        tr_pipe.save(result)
+    
 
     if args.visualize:
         visualize_detections(args.image, enriched)
@@ -228,7 +228,7 @@ def build_parser():
     p.add_argument("--image",     required=True)
     p.add_argument("--weights1",  default=None)
     p.add_argument("--weights2",  default=None)
-    p.add_argument("--save",      action="store_true")
+    
     p.add_argument("--visualize", action="store_true")
 
     return parser

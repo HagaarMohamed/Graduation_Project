@@ -133,3 +133,58 @@ def load_checkpoint(path: str, model, optimizer=None, scheduler=None):
         scheduler.load_state_dict(ckpt["scheduler_state"])
     print(f"[Stage2] Loaded checkpoint: epoch={start_epoch-1}, best_acc={best_acc:.4f}")
     return start_epoch, best_acc
+
+
+
+
+def load_config(config_path="config.yaml"):
+    """Return configuration dictionary directly to bypass file path issues."""
+    return {
+        "project_name": "hieroglyph_system",
+        "dataset": {
+            "kaggle_slug": "mohieymohamed/heroglyphics-signs",
+            "local_root": None
+        },
+        "detection": {
+            "model_size": "s",
+            "model_version": "yolo11",
+            "epochs": 50,
+            "imgsz": 1280,
+            "batch": 8,
+            "patience": 15,
+            "save_period": 5,
+            "conf_threshold": 0.15,
+            "iou_threshold": 0.40,
+            "max_det": 300,
+            "run_name": "hieroglyph_detector_v11",
+            "output_dir": "outputs/detection"
+        },
+        "classification": {
+            "imgsz": 224,
+            "batch_size": 32,
+            "epochs": 30,
+            "freeze_epochs": 5,
+            "lr_head": 1e-3,
+            "lr_full": 3e-4,
+            "dropout": 0.4,
+            "num_workers": 0,
+            "crops_dir": "data/crops",
+            "output_dir": "outputs/classification"
+        },
+        "sequence": {
+            "d_model": 256,
+            "nhead": 8,
+            "num_layers": 4,
+            "dim_feedforward": 1024,
+            "dropout": 0.1,
+            "max_seq_len": 256,
+            "output_dir": "outputs/sequence"
+        },
+        "paths": {
+            "fixed_yaml": "data/data_fixed.yaml",
+            "stage1_weights": "C:/Users/Test/Downloads/hieroglyph_system/best.pt",
+            "stage2_weights": "outputs/classification/best.pt",
+            "stage3_weights": "outputs/sequence/encoder_best.pt",
+            "class_map": "outputs/classification/class_map.json"
+        }
+    }

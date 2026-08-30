@@ -169,3 +169,7 @@ if __name__ == "__main__":
     
     print(f"Found result file: {result_path}", flush=True)
     run_evaluation(args.image)
+
+
+
+

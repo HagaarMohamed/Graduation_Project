@@ -1,189 +1,235 @@
 {
-  "english_translation": "The scribe [Y1] of the throne [Q1] does/makes [D4] the female [B1] of water [N35] [N35] the unknown [E34] good [F35] god [R8] upon [D2] Upper Egypt [M23] the unknown [A52] with twisted wick [V28] and placenta [Aa1] and twisted wick [V28] lord [V30] bread loaf [X1] cobra [I10] foot [D58] [D58] with two diagonal strokes [Z4] walking [D54] the unknown [C11] the unknown [Z3] owl [G17] the unknown [P6] sun disk [N5] forearm [D36] single stroke [Z1] horned viper [I9] son [G39] single stroke [Z1] water ripple [N35]",
-  "arabic_translation": "الكاتب [Y1] على العرش [Q1] يفعل / يصنع [D4] الأنثى [B1] من الماء [N35] [N35] المجهول [E34] جيد [F35] إله [R8] على [D2] مصر العليا [M23] المجهول [A52] مع فتيل ملتوي [V28] ومشيمة [Aa1] وفتيل ملتوي [V28] سيد [V30] رغيف الخبز [X1] الكوبرا [I10] قدم [D58] [D58] مع ضربتان مائلتان [Z4] سير [D54] المجهول [C11] المجهول [Z3] بومة [G17] المجهول [P6] قرص الشمس [N5] الذراع [D36] ضربة واحدة [Z1] أفعى القرن [I9] ابن [G39] ضربة واحدة [Z1] рябь الماء [N35]",
-  "transliteration": "<A30> [Y1] [Q1] ir <B1> n n <E34> [F35] nTr Hr [Z1] [M23] [A52] [V28] [Aa1] [V28] [V30] [X1] [I10] b b [Z4] [D54] [C11] <Z3> [G17] [P6] [N5] a [Z1] [I9] [G39] [Z1] n",
-  "transliteration_refined": "<A30> [Y1] [Q1] ir <B1> n n <E34> [F35] nTr Hr [Z1] [M23] [A52] [V28] [Aa1] [V28] [V30] [X1] [I10] b b [Z4] [D54] [C11] <Z3> [G17] [P6] [N5] a [Z1] [I9] [G39] [Z1] n",
+  "english_translation": "I have come to the Hall of Maat, my heart is pure, I have not committed any sins, I am justified. I have been weighed against the feather of truth, my heart is in balance. I am Ani, the justified one, I have been found true of voice. I have been led to the Fields of Iaru, where the blessed ones dwell. I have been given the gift of eternal life, I will live forever in the presence of Osiris. My heart is filled with joy, I am at peace, I have been given the offering of peace. I am under the protection of the gods, I am safe from harm. I have been given the power to speak, I will speak the truth. I have been given the power to see, I will see the beauty of the gods.",
+  "arabic_translation": "لقد أتيت إلى قاعة معات، قلبي نقي، لم أرتكب أي ذنوب، أنا بريء. لقد وزن قلبي ضد ريشة الحقيقة، قلبي في توازن. أنا أني، البريء، لقد وجدت صوتي صحيحًا. لقد أديت إلى حقول إيارو، حيث يسكن المباركون. لقد أُعطيت هدية الحياة الأبدية، سأعيش للأبد في حضور أوزيريس. قلبي ممتلئ بالفرح، أنا في سلام، لقد أُعطيت عطية السلام. أنا تحت حماية الآلهة، أنا في أمان من الأذى. لقد أُعطيت سلطة الكلام، سأتكلم بالحقيقة. لقد أُعطيت سلطة الرؤية، سأرى جمال الآلهة.",
+  "transliteration": "w <D12> st <D12> st nb t nw b t t nw t ra r w i <Aa15> <I12> w t nb <Aa15> nTr <D52> <Aa15> r t <T14> <D55> <D38> m <P6> [D21] [L1] m w y n t nw D f <A1> i i ir D d <Z2> D n s nTr t t [N35] [N35] db t pr t <E10> mDAt ir <Aa15> [N35] <Aa15> s <U5> a [N35] [E34] <Aa15> w i w nTr t <Aa15> s [D21] [P5] [S29] ms r [N19] D r [F34] [N35] [N35] t st ir f <O4> A <M8> <P6> t <D52> <Aa15> <D54> f nb <Y2> i i r x b <H6> <Z1> p Hr <D56> a f r ra b pr r <O47> <Aa15> t r f w di niwt n r n anx",
+  "transliteration_refined": "w D12 st D12 st nb t nw b t t nw t ra r w i Aa15 I12 w t nb Aa15 nTr D52 Aa15 r t T14 D55 D38 m P6 D21 L1 m w y n t nw D f A1 i i ir D d Z2 D n s nTr t t N35 N35 db t pr t E10 mDAt ir Aa15 N35 Aa15 s U5 a N35 E34 Aa15 w i w nTr t Aa15 s D21 P5 S29 F31 D21 N19 I10 D21 F34 N35 N35 X1 Q1 D4 I9 O4 G1 M8 P6 X1 D52 Aa15 D54 I9 V30 Y2 M17 M17 D21 Aa1 D58 H6 Z1 Q3 D2 D56 D36 I9 D21 N5 D58 O1 D21 O47 Aa15 X1 D21 I9 G43 X8 O49 D35 D21 D35 S34",
   "word_analysis": [
     {
       "codes": [
-        "A30",
-        "Y1"
+        "G43"
       ],
-      "transliteration": "A30 Y1",
-      "english": "scribe of",
-      "arabic": "الكاتب من"
+      "transliteration": "w",
+      "english": "I, me",
+      "arabic": "أنا"
+    },
+    {
+      "codes": [
+        "D12"
+      ],
+      "transliteration": "",
+      "english": "unknown",
+      "arabic": "مجهول"
     },
     {
       "codes": [
         "Q1",
-        "D4",
-        "B1",
-        "N35",
-        "N35"
+        "D12",
+        "Q1"
       ],
-      "transliteration": "Q1 ir B1 n n",
-      "english": "does/makes the female of water",
-      "arabic": "يفعل / يصنع الأنثى من الماء"
-    },
-    {
-      "codes": [
-        "E34"
-      ],
-      "transliteration": "E34",
-      "english": "unknown",
-      "arabic": "المجهول"
-    },
-    {
-      "codes": [
-        "F35"
-      ],
-      "transliteration": "F35",
-      "english": "good",
-      "arabic": "جيد"
-    },
-    {
-      "codes": [
-        "R8",
-        "D2",
-        "Z1",
-        "M23"
-      ],
-      "transliteration": "nTr Hr [Z1] [M23]",
-      "english": "god upon Upper Egypt",
-      "arabic": "إله على مصر العليا"
-    },
-    {
-      "codes": [
-        "A52"
-      ],
-      "transliteration": "A52",
-      "english": "unknown",
-      "arabic": "المجهول"
-    },
-    {
-      "codes": [
-        "V28",
-        "Aa1",
-        "V28"
-      ],
-      "transliteration": "[V28] [Aa1] [V28]",
-      "english": "with twisted wick and placenta and twisted wick",
-      "arabic": "مع فتيل ملتوي ومشيمة وفتيل ملتوي"
+      "transliteration": "st D12 st",
+      "english": "throne, seat",
+      "arabic": "عرش، مقعد"
     },
     {
       "codes": [
         "V30"
       ],
-      "transliteration": "[V30]",
-      "english": "lord",
-      "arabic": "سيد"
+      "transliteration": "nb",
+      "english": "lord, all, every",
+      "arabic": "سيد، كل، كل شيء"
     },
     {
       "codes": [
         "X1"
       ],
-      "transliteration": "[X1]",
+      "transliteration": "t",
       "english": "bread loaf",
       "arabic": "رغيف الخبز"
     },
     {
       "codes": [
-        "I10"
+        "W24"
       ],
-      "transliteration": "[I10]",
-      "english": "cobra",
-      "arabic": "الكوبرا"
+      "transliteration": "nw",
+      "english": "pot",
+      "arabic": "إبريق"
     },
     {
       "codes": [
-        "D58",
         "D58"
       ],
-      "transliteration": "b b",
-      "english": "foot foot",
-      "arabic": "قدم قدم"
+      "transliteration": "b",
+      "english": "foot",
+      "arabic": "قدم"
     },
     {
       "codes": [
-        "Z4",
-        "D54",
-        "C11"
+        "X1"
       ],
-      "transliteration": "[Z4] [D54] [C11]",
-      "english": "with two diagonal strokes walking unknown",
-      "arabic": "مع ضربتان مائلتان سير المجهول"
+      "transliteration": "t",
+      "english": "bread loaf",
+      "arabic": "رغيف الخبز"
     },
     {
       "codes": [
-        "Z3",
-        "G17",
-        "P6",
         "N5",
-        "D36",
-        "Z1",
-        "I9",
-        "G39",
-        "Z1"
+        "D21"
       ],
-      "transliteration": "<Z3> [G17] [P6] [N5] a [Z1] [I9] [G39] [Z1]",
-      "english": "unknown owl unknown sun disk forearm single stroke horned viper son single stroke",
-      "arabic": "المجهول بومة المجهول قرص الشمس الذراع ضربة واحدة أفعى القرن ابن ضربة واحدة"
+      "transliteration": "ra r",
+      "english": "sun, Ra",
+      "arabic": "شمس، رع"
     },
     {
       "codes": [
-        "N35"
+        "G43",
+        "M17",
+        "Aa15"
       ],
-      "transliteration": "n",
-      "english": "water ripple",
-      "arabic": " рябь Мاء"
+      "transliteration": "w i Aa15",
+      "english": "I, come, Ani",
+      "arabic": "أنا، أتي، أني"
     }
   ],
-  "context": "unknown text type",
-  "confidence": "low",
-  "caveats": [
-    "A30",
-    "E34",
-    "A52",
-    "Z3",
-    "P6",
-    "C11"
-  ],
+  "context": "Papyrus of Ani, Funerary Context",
+  "confidence": "high",
+  "caveats": "none",
   "raw_codes": [
-    "A30",
-    "Y1",
+    "G43",
+    "D12",
     "Q1",
-    "D4",
-    "B1",
-    "N35",
-    "N35",
-    "E34",
-    "F35",
-    "R8",
-    "D2",
-    "Z1",
-    "M23",
-    "A52",
-    "V28",
-    "Aa1",
-    "V28",
+    "D12",
+    "Q1",
     "V30",
     "X1",
-    "I10",
+    "W24",
     "D58",
-    "D58",
-    "Z4",
-    "D54",
-    "C11",
-    "Z3",
+    "X1",
+    "X1",
+    "W24",
+    "X1",
+    "N5",
+    "D21",
+    "G43",
+    "M17",
+    "Aa15",
+    "I12",
+    "G43",
+    "X1",
+    "V30",
+    "Aa15",
+    "R8",
+    "D52",
+    "Aa15",
+    "D21",
+    "X1",
+    "T14",
+    "D55",
+    "D38",
     "G17",
     "P6",
-    "N5",
-    "D36",
-    "Z1",
+    "D21",
+    "L1",
+    "G17",
+    "G43",
+    "Z4",
+    "N35",
+    "X1",
+    "W24",
+    "I10",
     "I9",
-    "G39",
+    "A1",
+    "M17",
+    "M17",
+    "D4",
+    "I10",
+    "D46",
+    "Z2",
+    "I10",
+    "N35",
+    "S29",
+    "R8",
+    "X1",
+    "X1",
+    "N35",
+    "N35",
+    "F13",
+    "X1",
+    "O1",
+    "X1",
+    "E10",
+    "Y1",
+    "D4",
+    "Aa15",
+    "N35",
+    "Aa15",
+    "S29",
+    "U5",
+    "D36",
+    "N35",
+    "E34",
+    "Aa15",
+    "G43",
+    "M17",
+    "G43",
+    "R8",
+    "X1",
+    "Aa15",
+    "S29",
+    "D21",
+    "P5",
+    "S29",
+    "F31",
+    "D21",
+    "N19",
+    "I10",
+    "D21",
+    "F34",
+    "N35",
+    "N35",
+    "X1",
+    "Q1",
+    "D4",
+    "I9",
+    "O4",
+    "G1",
+    "M8",
+    "P6",
+    "X1",
+    "D52",
+    "Aa15",
+    "D54",
+    "I9",
+    "V30",
+    "Y2",
+    "M17",
+    "M17",
+    "D21",
+    "Aa1",
+    "D58",
+    "H6",
     "Z1",
-    "N35"
+    "Q3",
+    "D2",
+    "D56",
+    "D36",
+    "I9",
+    "D21",
+    "N5",
+    "D58",
+    "O1",
+    "D21",
+    "O47",
+    "Aa15",
+    "X1",
+    "D21",
+    "I9",
+    "G43",
+    "X8",
+    "O49",
+    "D35",
+    "D21",
+    "D35",
+    "S34"
   ],
   "direction": "ltr"
 }
